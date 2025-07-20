@@ -2,7 +2,7 @@
 ; Twitch: RR_357000
 ; X:@relliK_2048
 ; Discord:
-; T7ES3 Process Control
+; T7ES3 End Process
 #SingleInstance force
 #Persistent
 #NoEnv

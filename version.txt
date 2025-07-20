@@ -6,4 +6,4 @@ OriginalFilename=t7es3ep.exe
 ProductName=T7ES3 End Process
 ProductVersion=%%VERSION%%
 LegalCopyright=© 2025 Philip
-Comments=Built on 20250719_22 | Git Tag: %%GIT_TAG%%
+Comments=Built on 20250720_20 | Git Tag: %%GIT_TAG%%
