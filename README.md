@@ -3,7 +3,9 @@
 **Kills all T7ES3 processes.**              
 
 
-![t7es3sm.png](images/t7es3sm.png)
+![t7es3ep.png](images/t7es3ep.png)
+
+> Sometimes .exes are named differently make sure it's always: TekkenGame-Win64-Shipping.exe            
 
 ---
 
