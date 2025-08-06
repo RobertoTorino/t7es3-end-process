@@ -12,7 +12,6 @@ jobs:
       contents: write
       packages: write
 
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -55,17 +54,7 @@ jobs:
           # --- Always move EXE to $env:GITHUB_WORKSPACE ---
           $repoRoot = $env:GITHUB_WORKSPACE
           $compiledExe = Join-Path $PWD $output
-          $finalExe = Join-Path $repoRoot "$exeBase.exe"
-          $newExe = Join-Path $repoRoot "t7es3ep_$version.exe"
-          
-          # Move compiled EXE directly to versioned output
-          if (Test-Path $compiledExe) {
-          Move-Item $compiledExe $newExe -Force
-          Write-Host ":: Moved EXE to $newExe"
-          } else {
-          Write-Error ":: Compiled EXE not found at $compiledExe"
-          exit 1
-          }
+          $finalExe    = Join-Path $repoRoot $output
 
           # Normal move/copy logic
           if ((Test-Path $compiledExe) -and ($compiledExe -ne $finalExe)) {
@@ -95,7 +84,7 @@ jobs:
           }
 
           # --- ZIP ---
-          $toZip = @($newExe)
+          $toZip = @($finalExe)
           foreach ($asset in $extraAssets) {
             $assetAbs = Join-Path $repoRoot $asset
             if (Test-Path $assetAbs) {
@@ -105,17 +94,14 @@ jobs:
               Write-Warning "Not adding (missing): $assetAbs"
             }
           }
-          $version = $version.Trim('"')  # removes quotes if present
-          $zipName = "t7es3_release_$($version).zip"
-          $zipPath = Join-Path $repoRoot "t7es3_release_$version.zip"
-          Compress-Archive -Path $toZip -DestinationPath $zipPath -Force          
+          $zipPath = Join-Path $repoRoot $zipName
+          Compress-Archive -Path $toZip -DestinationPath $zipPath -Force
 
       - name: Upload EXE and ZIP to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            t7es3ep_${{ github.ref_name }}.exe
-            t7es3_release_${{ github.ref_name }}.zip
+            t7es3ep.exe
+            t7es3_release.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
