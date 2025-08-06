@@ -55,15 +55,17 @@ jobs:
           # --- Always move EXE to $env:GITHUB_WORKSPACE ---
           $repoRoot = $env:GITHUB_WORKSPACE
           $compiledExe = Join-Path $PWD $output
-          $version = $env:GITHUB_REF_NAME   # e.g., v1.0.19
-          $exeBase = "t7es3ep"
           $finalExe = Join-Path $repoRoot "$exeBase.exe"
-          $newExe = Join-Path $repoRoot "${exeBase}_$version.exe"
+          $version = $version.Trim('"') -replace '[\\/:*?"<>|]', '_'
+          $newExe = Join-Path $repoRoot "t7es3ep_$version.exe"
           
-          # Rename the EXE
-          if (Test-Path $finalExe) {
-          Rename-Item $finalExe $newExe -Force
-          Write-Host ":: Renamed $finalExe to $newExe"
+          # Move compiled EXE directly to versioned output
+          if (Test-Path $compiledExe) {
+          Move-Item $compiledExe $newExe -Force
+          Write-Host ":: Moved EXE to $newExe"
+          } else {
+          Write-Error ":: Compiled EXE not found at $compiledExe"
+          exit 1
           }
 
           # Normal move/copy logic
@@ -93,7 +95,6 @@ jobs:
             & "upx\upx.exe" --best --lzma $finalExe
           }
 
-
           # --- ZIP ---
           $toZip = @($newExe)
           foreach ($asset in $extraAssets) {
@@ -107,8 +108,8 @@ jobs:
           }
           $version = $version.Trim('"')  # removes quotes if present
           $zipName = "t7es3_release_$($version).zip"
-          $zipPath = Join-Path $repoRoot $zipName
-          Compress-Archive -Path $toZip -DestinationPath $zipPath -Force
+          $zipPath = Join-Path $repoRoot "t7es3_release_$version.zip"
+          Compress-Archive -Path $toZip -DestinationPath $zipPath -Force          
 
       - name: Upload EXE and ZIP to GitHub Release
         uses: softprops/action-gh-release@v2
