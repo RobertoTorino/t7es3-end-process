@@ -56,7 +56,6 @@ jobs:
           $repoRoot = $env:GITHUB_WORKSPACE
           $compiledExe = Join-Path $PWD $output
           $finalExe = Join-Path $repoRoot "$exeBase.exe"
-          $version = $version.Trim('"') -replace '[\\/:*?"<>|]', '_'
           $newExe = Join-Path $repoRoot "t7es3ep_$version.exe"
           
           # Move compiled EXE directly to versioned output
