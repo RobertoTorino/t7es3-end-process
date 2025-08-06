@@ -1,13 +1,19 @@
 param(
-    [string]$Message = "Automated commit"
+    [string]$Message = "Automated commit",
+    [ValidateSet("major","minor","patch")] [string]$Part = "patch"
 )
 
-git add .
-git commit -m "$Message"
+# Only commit if there are changes
+if (-not (git status --porcelain)) {
+    Write-Host "No changes to commit."
+} else {
+    git add .
+    git commit -m "$Message"
+    git push
+}
 
-# Find the latest tag like v1.2.3, sorted as version
+# Find the latest tag
 $lastTag = git tag --list "v*" | Sort-Object {[version]($_ -replace '^v','')} -Descending | Select-Object -First 1
-
 if ($lastTag -match '^v(\d+)\.(\d+)\.(\d+)$') {
     $major = [int]$matches[1]
     $minor = [int]$matches[2]
@@ -16,24 +22,15 @@ if ($lastTag -match '^v(\d+)\.(\d+)\.(\d+)$') {
     $major = 0; $minor = 0; $patch = 0
     $lastTag = "v0.0.0"
 }
-
 Write-Host "Last tag: $lastTag"
-$choice = Read-Host "Which part would you like to increment? (1=major, 2=minor, 3=patch, default=patch):"
-switch ($choice.ToLower()) {
-    "major" { $major++; $minor=0; $patch=0 }
-    "1"     { $major++; $minor=0; $patch=0 }
-    "minor" { $minor++; $patch=0 }
-    "2"     { $minor++; $patch=0 }
-    "patch" { $patch++ }
-    "3"     { $patch++ }
-    default { $patch++ }
-}
 
+switch ($Part.ToLower()) {
+    "major" { $major++; $minor=0; $patch=0 }
+    "minor" { $minor++; $patch=0 }
+    "patch" { $patch++ }
+}
 $newTag = "v$major.$minor.$patch"
 Write-Host "Creating and pushing tag $newTag..."
-
 git tag $newTag
-git push
 git push origin $newTag
-
 Write-Host "Committed and tagged as $newTag."

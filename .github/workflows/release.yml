@@ -55,7 +55,16 @@ jobs:
           # --- Always move EXE to $env:GITHUB_WORKSPACE ---
           $repoRoot = $env:GITHUB_WORKSPACE
           $compiledExe = Join-Path $PWD $output
-          $finalExe    = Join-Path $repoRoot $output
+          $version = $env:GITHUB_REF_NAME   # e.g., v1.0.19
+          $exeBase = "t7es3ep"
+          $finalExe = Join-Path $repoRoot "$exeBase.exe"
+          $newExe   = Join-Path $repoRoot "$exeBase" + "_$version.exe"
+          
+          # Rename the EXE
+          if (Test-Path $finalExe) {
+          Rename-Item $finalExe $newExe -Force
+          Write-Host ":: Renamed $finalExe to $newExe"
+          }
 
           # Normal move/copy logic
           if ((Test-Path $compiledExe) -and ($compiledExe -ne $finalExe)) {
@@ -84,8 +93,9 @@ jobs:
             & "upx\upx.exe" --best --lzma $finalExe
           }
 
+
           # --- ZIP ---
-          $toZip = @($finalExe)
+          $toZip = @($newExe)
           foreach ($asset in $extraAssets) {
             $assetAbs = Join-Path $repoRoot $asset
             if (Test-Path $assetAbs) {
@@ -95,6 +105,7 @@ jobs:
               Write-Warning "Not adding (missing): $assetAbs"
             }
           }
+          $zipName = "t7es3_release_$version.zip"
           $zipPath = Join-Path $repoRoot $zipName
           Compress-Archive -Path $toZip -DestinationPath $zipPath -Force
 
@@ -102,7 +113,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            t7es3ep.exe
-            t7es3_release.zip
+            t7es3ep_${{ github.ref_name }}.exe
+            t7es3_release_${{ github.ref_name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
