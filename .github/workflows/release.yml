@@ -58,7 +58,7 @@ jobs:
           $version = $env:GITHUB_REF_NAME   # e.g., v1.0.19
           $exeBase = "t7es3ep"
           $finalExe = Join-Path $repoRoot "$exeBase.exe"
-          $newExe   = Join-Path $repoRoot "$exeBase"_$version.exe"
+          $newExe = Join-Path $repoRoot "${exeBase}_$version.exe"
           
           # Rename the EXE
           if (Test-Path $finalExe) {
