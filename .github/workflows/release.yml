@@ -105,7 +105,7 @@ jobs:
               Write-Warning "Not adding (missing): $assetAbs"
             }
           }
-          $zipName = "t7es3_release_$($version).zip"
+          $zipName = "t7es3_release_" + $version + ".zip"
           $zipPath = Join-Path $repoRoot $zipName
           Compress-Archive -Path $toZip -DestinationPath $zipPath -Force
 
