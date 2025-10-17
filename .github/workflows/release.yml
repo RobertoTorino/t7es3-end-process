@@ -139,7 +139,7 @@ jobs:
               }
             }
           
-          foreach ($folder in @($mediaFolder, $toolsFolder)) {
+          foreach ($folder in @($mediaFolder)) {
             if (Test-Path $folder) {
               $files = Get-ChildItem -Path $folder -Recurse -File | Select-Object -ExpandProperty FullName
               $toZip += $files
