@@ -1,0 +1,101 @@
+[20250720_20] Built t7es3epLocalBuild_20250720_205641.exe with embedded WAVs
+[20250720_21] Built t7es3epLocalBuild_20250720_210951.exe with embedded WAVs
+[20250720_21] Built t7es3epLocalBuild_20250720_211606.exe with embedded WAVs
+[20251017_165349] Built t7es3epLocalBuild_20251017_165346.exe 
+[20251017_172616] Built t7es3ep_LocalBuild_20251017_172616.exe with version 20251017_172616
+──────────────────────────────────────────────
+[2025-10-17 17:38] v1.0.21
+- Automated commit
+
+──────────────────────────────────────────────
+[2025-10-17 17:46] v1.0.22
+- Automated commit - Update version file for v1.0.21 - Update changelog for v1.0.21
+
+──────────────────────────────────────────────
+[] v1.0.23
+- Automated commit
+
+[20251017_180715] Built t7es3ep_LocalBuild_20251017_180715.exe with version 20251017_180715
+[20251017_185027] Built t7es3ep_LocalBuild_20251017_185027.exe with version 20251017_185027
+──────────────────────────────────────────────
+[] v1.0.24
+- Update version files for v1.0.24 - Automated commit
+
+──────────────────────────────────────────────
+[] v1.0.25
+- Update version files for v1.0.25
+
+──────────────────────────────────────────────
+[] v1.0.26
+- Update version files for v1.0.26 - Automated commit - Automated commit - Automated commit
+
+[20251017_191313] Built t7es3ep_LocalBuild_20251017_191313.exe with version 20251017_191313
+──────────────────────────────────────────────
+[] v1.0.27
+- Update version files for v1.0.27 - Automated commit
+
+──────────────────────────────────────────────
+[] v1.0.28
+- Update version files for v1.0.28
+
+──────────────────────────────────────────────
+[] v1.0.29
+- Update version files for v1.0.29
+
+──────────────────────────────────────────────
+[] v1.0.30
+- Update version files for v1.0.30
+
+──────────────────────────────────────────────
+[] v1.0.31
+- Update version files for v1.0.31
+
+──────────────────────────────────────────────
+[] v1.0.32
+- Update version files for v1.0.32
+
+──────────────────────────────────────────────
+[] v1.0.33
+- Update version files for v1.0.33 - Automated commit
+
+[2025-10-17 20:28] v1.0.34
+
+
+[2025-10-17 20:31] v1.0.35
+
+
+[2025-10-17 20:35] v1.0.36
+
+
+[2025-10-17 20:37] v1.0.37
+
+
+[2025-10-17 20:40] v1.0.38
+
+
+[20251017_204432] Built t7es3ep_LocalBuild_20251017_204432.exe with version 20251017_204432
+[2025-10-17 20:45] v1.0.39
+
+
+[2025-10-17 20:55] v1.0.40
+
+
+[2025-10-17 21:04] v1.0.41
+
+
+[2025-10-17 21:05] v1.0.42
+
+
+[2025-10-17 21:09] v1.0.43
+
+
+[2025-10-17 21:14] v1.0.44
+
+
+[2025-10-17 21:34] v1.0.45
+
+
+[2025-10-17 21:37] v1.0.46
+
+
+[20251017_214927] Built t7es3ep_LocalBuild_20251017_214927.exe with version 20251017_214927
