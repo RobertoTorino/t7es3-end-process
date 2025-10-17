@@ -51,7 +51,7 @@ jobs:
           $versionedExe = "t7es3ep_v$version.exe"
           $zipName = "t7es3ep_v$version.zip"
           
-          $requiredFiles = @($ahkCompiler,$baseFile, $input")
+          $requiredFiles = @($ahkCompiler, $baseFile, $input)
           
           foreach ($file in $requiredFiles) {
             if (!(Test-Path $file)) {
