@@ -1,7 +1,6 @@
 ; YouTube: @game_play267
 ; Twitch: RR_357000
 ; X:@relliK_2048
-; Discord:
 ; T7ES3 End Process
 #SingleInstance force
 #Persistent
@@ -41,9 +40,9 @@ if A_Args[1] = "activate" {
 
 ; ─── Start GUI. ───────────────────────────────────────────────────────────────────────────────────────────────────────
 title := "T7ES3 End Process - " . Chr(169) . " " . A_YYYY . " - Philip"
-Gui, Show, w400 h100, %title%
+Gui, Show, w400 h50, %title%
 Gui, +LastFound
-Gui, Font, s10 q5, Arial
+Gui, Font, s10 bold q5, Arial
 Gui, Margin, 15, 15
 GuiHwnd := WinExist()
 

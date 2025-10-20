@@ -36,7 +36,7 @@ jobs:
           $mediaFolder  = Join-Path $repoRoot "t7es3_media"
           $input        = Join-Path $repoRoot "t7es3ep.ahk"
           $output       = Join-Path $repoRoot "t7es3ep.exe"
-          $icon         = Join-Path $repoRoot "t7es3_media\default.ico"
+          $icon         = Join-Path $repoRoot "media\default.ico"
           $upxPath      = Join-Path $repoRoot "upx\upx.exe"
           $versionTxt   = Join-Path $repoRoot "version.txt"
           $versionDat   = Join-Path $repoRoot "version.dat"
